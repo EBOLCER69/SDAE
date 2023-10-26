@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class ComplexNr{
+private:
+    double Re;
+    double Im;
+public:
+    ComplexNr(){
+        Re = 0;
+        Im = 0;
+    }
+    void set(double re, double im) {
+        Re = re;
+        Im = im;
+    }
+    double modul(double re, double im){
+        double re2 = re*re;
+        double im2 = im*im;
+        return sqrt(re2+im2);
+    }
+};
+
+int main() {
+    ComplexNr c;
+    int n;
+    double x,y,min=1000000;
+    double re,im;
+    cin >> n;
+    for(int i=0; i<n; i++){
+       scanf("%lf,%lf",&x, &y);
+       c.set(x,y);
+       double m = c.modul(x,y);
+       if(m < min) {
+           min = m;
+           re = x;
+           im = y;
+       }
+    }
+    cout << setprecision(1) << fixed << re << " " << im;
+    return 0;
+}
