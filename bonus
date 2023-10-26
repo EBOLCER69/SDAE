@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    string word;
+    map<string, int> FW;
+    while(cin >> word)
+    {
+        FW[word]++;
+    }
+    int ct=0;
+    map<string, int>::iterator m;
+    for (m = FW.begin(); m != FW.end(); m++)
+        ct++;
+    cout << ct;
+    return 0;
+}
