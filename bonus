@@ -2,18 +2,26 @@
 
 using namespace std;
 
-int main()
-{
-    string word;
-    map<string, int> FW;
-    while(cin >> word)
-    {
-        FW[word]++;
+bool par(int x1, int x2){
+    return x1 < x2;
+}
+
+bool impar(int x1, int x2){
+    return x1 > x2;
+}
+
+int main() {
+    int nr;
+    vector<int> v_par, v_impar;
+    while(cin >> nr){
+        if(nr % 2 == 0) v_par.push_back(nr);
+        else v_impar.push_back(nr);
     }
-    int ct=0;
-    map<string, int>::iterator m;
-    for (m = FW.begin(); m != FW.end(); m++)
-        ct++;
-    cout << ct;
+    sort(v_par.begin(),v_par.end(),par);
+    sort(v_impar.begin(),v_impar.end(),impar);
+    for(int i = 0; i < v_par.size(); i++)
+        cout << v_par[i] << " ";
+    for(int i = 0; i < v_impar.size(); i++)
+        cout << v_impar[i] << " ";
     return 0;
 }
