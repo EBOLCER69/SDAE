@@ -1,43 +1,47 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 
 using namespace std;
 
-class ComplexNr{
-private:
-    double Re;
-    double Im;
+class Angajat {
 public:
-    ComplexNr(){
-        Re = 0;
-        Im = 0;
-    }
-    void set(double re, double im) {
-        Re = re;
-        Im = im;
-    }
-    double modul(double re, double im){
-        double re2 = re*re;
-        double im2 = im*im;
-        return sqrt(re2+im2);
+    string nume;
+    double salariu;
+public:
+    
+    Angajat(){};
+
+    void afisare(){
+        cout << setprecision(2) << fixed;
+        cout << nume << "," << salariu << endl;
     }
 };
 
-int main() {
-    ComplexNr c;
-    int n;
-    double x,y,min=1000000;
-    double re,im;
-    cin >> n;
-    for(int i=0; i<n; i++){
-       scanf("%lf,%lf",&x, &y);
-       c.set(x,y);
-       double m = c.modul(x,y);
-       if(m < min) {
-           min = m;
-           re = x;
-           im = y;
-       }
+bool compara(Angajat a1, Angajat a2){
+    if(a1.salariu == a2.salariu){
+        return a1.nume < a2.nume;
     }
-    cout << setprecision(1) << fixed << re << " " << im;
+    return a1.salariu > a2.salariu;
+}
+
+int main (){
+    char nume[130];
+    double salariu;
+    Angajat an;
+    vector<Angajat> v;
+    map<string, int> k;
+    while(scanf("%[^,],%lf ",nume,&salariu)!=EOF){
+        stringstream ss;
+        ss << nume;
+        an.nume = ss.str();
+        an.salariu = salariu;
+        k[an.nume]++;
+        if(k[an.nume] == 1){
+v.push_back(an);
+        }
+    }
+    sort(v.begin(),v.end(),compara);
+    for(auto & i : v){
+        i.afisare();
+    }
     return 0;
 }
